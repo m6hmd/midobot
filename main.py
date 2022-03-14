@@ -29,7 +29,7 @@ def getID(message):
         m = types.InlineKeyboardButton(f'CHECK : {str(numCH)}', callback_data="1x")
         mas.add(z, m)
         bot.edit_message_text(chat_id=message.chat.id, message_id=sendM.message_id,text= f'- LOADING .....\nPastebin : {pastebin}', reply_markup=mas)
-        url = "https://jahez.online/check_coin.php?oid={}&submit=submit".format(fil)
+        url = "https://m6hmdhaider.000webhostapp.com/coin-checker.php?oid={}&submit=submit".format(fil)
         #headers = {
         #    "Host": "v3-checker.herokuapp.com",
         #    "Connection": "keep-alive",
