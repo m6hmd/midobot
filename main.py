@@ -11,10 +11,10 @@ bot = telebot.TeleBot(BOT_TOKEN)
 server = Flask(__name__)
 logger = telebot.logger
 logger.setLevel(logging.DEBUG)
-@bot.message_handler(commands=['get'])
+@bot.message_handler(content_types=['text'])
 def getID(message):
     numCH = 0
-    pastebin = (message.text.split("|")[0]).replace("/get", "")
+    pastebin = (message.text.split("|")[0])
     num = int(message.text.split("|")[1])
     idS = requests.get(str(pastebin)).text.splitlines()
     mas = types.InlineKeyboardMarkup(row_width=2)
