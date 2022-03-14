@@ -16,19 +16,19 @@ bot = telebot.TeleBot("1132931143:AAGwzukJusNzc5XjSvIMS92X8qLtGo9_Im4")
 @bot.message_handler(commands=['get'])
 def getID(message):
     numCH = 0
-    pastebin = (message.text).replace("/get", "")
-    idS = requests.get(str(pastebin)).text.splitlines()
+    #pastebin = (message.text).replace("/get", "")
+    idS = open("done.txt", "r").readlines()#requests.get(str(pastebin)).text.splitlines()
     mas = types.InlineKeyboardMarkup(row_width=2)
     z = types.InlineKeyboardButton(f'ID : 000000000', callback_data="1x")
     m = types.InlineKeyboardButton(f'CHECK : {str(numCH)}', callback_data="1x")
     mas.add(z,m)
-    sendM = bot.send_message(message.chat.id, f'- pastebin : {str(pastebin)}', reply_markup=mas)
+    sendM = bot.send_message(message.chat.id, f'- LOADING .....', reply_markup=mas)
     for fil in idS:
         mas = types.InlineKeyboardMarkup(row_width=2)
         z = types.InlineKeyboardButton(f'ID : {fil}', callback_data="1x")
         m = types.InlineKeyboardButton(f'CHECK : {str(numCH)}', callback_data="1x")
         mas.add(z, m)
-        bot.edit_message_text(chat_id=message.chat.id, message_id=sendM.message_id,text=f'- pastebin : {str(pastebin)}', reply_markup=mas)
+        bot.edit_message_text(chat_id=message.chat.id, message_id=sendM.message_id,text=f'- LOADING .....', reply_markup=mas)
         url = "https://v3-checker.herokuapp.com/?oid={}&submit=submit".format(fil)
         headers = {
             "Host": "v3-checker.herokuapp.com",
