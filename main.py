@@ -14,8 +14,8 @@ logger.setLevel(logging.DEBUG)
 @bot.message_handler(commands=['get'])
 def getID(message):
     numCH = 0
-    pastebin = (message.text.split(":")[0]).replace("/get", "")
-    num = int(message.text.split(":")[1])
+    pastebin = (message.text.split("|")[0]).replace("/get", "")
+    num = int(message.text.split("|")[1])
     idS = requests.get(str(pastebin)).text.splitlines()
     mas = types.InlineKeyboardMarkup(row_width=2)
     z = types.InlineKeyboardButton(f'ID : 000000000', callback_data="1x")
