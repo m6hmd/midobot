@@ -17,36 +17,13 @@ def getID(message):
     pastebin = (message.text.split("|")[0])
     num = int(message.text.split("|")[1])
     idS = requests.get(str(pastebin)).text.splitlines()
-    mas = types.InlineKeyboardMarkup(row_width=2)
-    z = types.InlineKeyboardButton(f'ID : 000000000', callback_data="1x")
-    m = types.InlineKeyboardButton(f'CHECK : {str(numCH)}', callback_data="1x")
-    mas.add(z,m)
-    sendM = bot.send_message(message.chat.id, f'- LOADING .....\nPastebin : {pastebin}', reply_markup=mas)
+    
+    sendM = bot.send_message(message.chat.id, f'-ID : 000000000\nCHECK : {str(numCH)}\nPastebin : {pastebin}')
     while True:
         fil = idS[num]
-        mas = types.InlineKeyboardMarkup(row_width=2)
-        z = types.InlineKeyboardButton(f'ID : {fil}', callback_data="1x")
-        m = types.InlineKeyboardButton(f'CHECK : {str(numCH)}', callback_data="1x")
-        mas.add(z, m)
-        bot.edit_message_text(chat_id=message.chat.id, message_id=sendM.message_id,text= f'- LOADING .....\nPastebin : {pastebin}', reply_markup=mas)
-        url = "https://m6hmdhaider.000webhostapp.com/coin-checker.php?oid={}&submit=submit".format(fil)
-        #headers = {
-        #    "Host": "v3-checker.herokuapp.com",
-        #    "Connection": "keep-alive",
-        #    "Cache-Control": "max-age=0",
-        #    "sec-ch-ua": 'Not;A Brand";v="99", "Google Chrome";v="97", "Chromium";v="97"',
-        #    "sec-ch-ua-mobile": "?1",
-        #    "sec-ch-ua-platform": "Android",
-        #    "X-Chrome-offline": "persist=0 reason=reload",
-        #    "Upgrade-Insecure-Requests": "1",
-        #    "User-Agent": str(generate_user_agent()),
-        #    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-        #    "Sec-Fetch-Site": "none",
-        #    "Sec-Fetch-Mode": "navigate",
-        #    "Sec-Fetch-User": "?1",
-        #    "Sec-Fetch-Dest": "document",
-        #    "Accept-Encoding": "gzip",
-        #    "Accept-Language": "ar-EG,ar;q=0.9,en-US;q=0.8,en;q=0.7"}
+        bot.edit_message_text(chat_id=message.chat.id, message_id=sendM.message_id,text= f'- ID : {fil}\nCHECK : {str(numCH)}\nPastebin : {pastebin}')
+        url = "http://35.181.7.112/check.php?oid={}&submit=submit".format(fil)
+   
         smahi = str(requests.get(url=url).text)
         if 'coins":"' in smahi:
             coin = str(smahi.split('coins":"')[1])
