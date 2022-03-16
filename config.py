@@ -1,2 +1,2 @@
-BOT_TOKEN = "1132931143:AAGwzukJusNzc5XjSvIMS92X8qLtGo9_Im4"
+BOT_TOKEN = "1196044747:AAFzqG3jFuaeyeG6BddflCWxgZ-RqoOHm1c"
 APP_URL = "https://telegrambooot.herokuapp.com/" + BOT_TOKEN
