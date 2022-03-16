@@ -18,7 +18,7 @@ def getID(message):
     check = 0
     more = 0
     less = 0
-    pastebin = message.text.
+    pastebin = message.text
 
     idS = requests.get(str(pastebin)).text.splitlines()
 
