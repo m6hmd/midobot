@@ -39,7 +39,7 @@ def S(message):
             elif "subscribers" in response or "Preview channel" in response or "subscriber":
                 print("hello")
             time.sleep(5)
-        bot.send_message(message.chat.id, f"Done list begin with {mes[0]}")
+        bot.send_message(message.chat.id, f"Done list begin with @{mes[0]}")
 
 
 @server.route(f"/{BOT_TOKEN}", methods=["POST"])
