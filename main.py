@@ -1,4 +1,4 @@
-import requests, user_agent, json, flask, telebot, random, os, sys, time
+import requests, user_agent, json, flask, telebot, random, os, sys, time, threading
 import telebot
 from telebot import types
 from user_agent import generate_user_agent
@@ -6,7 +6,7 @@ import logging
 from config import *
 from flask import Flask, request
 
-BOT_TOKEN = "1111603340:AAHuKvMBE6z5Sk1rQ_jl-yWi12UVcjBU91U"
+BOT_TOKEN = "5295940154:AAGZc95-F6VltntXMGDGIsyRb21qI8EIZwQ"
 bot = telebot.TeleBot(BOT_TOKEN)
 server = Flask(__name__)
 logger = telebot.logger
@@ -52,5 +52,5 @@ def redirect_message():
 
 if __name__ == "__main__":
     bot.remove_webhook()
-    bot.set_webhook(url="https://telegrambooot.herokuapp.com/" + str(BOT_TOKEN))
+    bot.set_webhook(url="https://temidolebot.herokuapp.com/" + str(BOT_TOKEN))
     server.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
