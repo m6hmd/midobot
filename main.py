@@ -12,8 +12,7 @@ server = Flask(__name__)
 logger = telebot.logger
 logger.setLevel(logging.DEBUG)
 
-@bot.message_handler(content_types=["text"])
-def S(message):
+def chCh(message):
     if message.text == "/start":
         bot.send_message(message.chat.id, "Send List ......")
     elif "/" in message.text:
@@ -39,8 +38,10 @@ def S(message):
             elif "subscribers" in response or "Preview channel" in response or "subscriber":
                 print("hello")
             time.sleep(5)
-        bot.send_message(message.chat.id, f"Done list begin with @{mes[0]}")
-
+        bot.send_message(message.chat.id, f"Done list begin with {mes[0]}")
+@bot.message_handler(content_types=["text"])
+def S(message):
+    threading.Thread(target=chCh, args=[message])
 
 @server.route(f"/{BOT_TOKEN}", methods=["POST"])
 def redirect_message():
